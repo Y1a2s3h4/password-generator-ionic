@@ -40,12 +40,9 @@ import {
   IonInput,
   IonToast,
 } from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
-import copy from "copy-to-clipboard";
 export default class App extends Component {
   constructor() {
     super();
-    // this.upper = React.createRef();
     this.input = React.createRef();
     this.generate = this.generate.bind(this);
     this.copyPassword = this.copyPassword.bind(this);
@@ -85,10 +82,7 @@ export default class App extends Component {
     }
     this.setState({ password: pw.slice(0, this.state.pLength) });
   }
-  copyPassword() {
-    copy(this.state.password);
-    this.setState({ showToast: true });
-  }
+
   render() {
     return (
       <IonPage>
@@ -109,7 +103,7 @@ export default class App extends Component {
                   ref={this.input}
                   readonly
                 ></IonInput>
-                <IonIcon icon={copyOutline} onClick={this.copyPassword} />
+                <IonIcon icon={copyOutline} />
               </IonItem>
               <h6>Password length</h6>
               <IonInput
@@ -119,27 +113,6 @@ export default class App extends Component {
                   this.setState({ pLength: parseInt(e.detail.value, 10) })
                 }
               ></IonInput>{" "}
-              {/* <div className="upper">
-                <input
-                  type="checkbox"
-                  ref={this.upper}
-                  name="upper"
-                  id="upper"
-                />
-                <label htmlFor="upper">Include Upper Letters</label>
-              </div>
-              <div className="upper">
-                <input type="checkbox" name="upper" id="lower" />
-                <label htmlFor="lower">Include Lower Letters</label>
-              </div>
-              <div className="upper">
-                <input type="checkbox" name="upper" id="number" />
-                <label htmlFor="number">Include Number</label>
-              </div>
-              <div className="upper">
-                <input type="checkbox" name="upper" id="symbols" />
-                <label htmlFor="symbols">Include Symbols</label>
-              </div> */}
               <IonButton expand="block" onClick={this.generate} color="primary">
                 Generate
               </IonButton>
